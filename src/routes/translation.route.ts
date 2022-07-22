@@ -11,7 +11,9 @@ const createTranslationUseCase = new CreateTranslationUseCase();
 const deleteTranslationUseCase = new DeleteTranslationUseCase();
 
 translationRoutes.get("/", async (request, response) => {
-  const { moduleName, language } = request.body;
+  const moduleName = request.query.moduleName as string;
+  const language = request.query.language as string;
+
   const translation = await listTranslationsUseCase.execute({
     moduleName,
     language,
